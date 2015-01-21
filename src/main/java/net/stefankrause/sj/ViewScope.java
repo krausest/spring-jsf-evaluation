@@ -15,6 +15,9 @@ import org.springframework.beans.factory.config.Scope;
  * 
  * @author Optimus Prime(From the primefaces
  *         team)(http://blog.primefaces.org/?p=702)
+ *         
+ *         
+ * from https://github.com/Zergleb/Spring-Boot-JSF-Example
  */
 public class ViewScope implements Scope {
 	public Object get(String name, ObjectFactory<? extends Object> objectFactory) {

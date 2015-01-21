@@ -1,0 +1,7 @@
+.visibilty-hidden {
+	visibility: hidden;
+} 
+
+select[size] {
+ 	height: 34px;
+}

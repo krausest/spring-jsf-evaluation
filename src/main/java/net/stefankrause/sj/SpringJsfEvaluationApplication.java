@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.sun.faces.config.ConfigureListener;
 
+/** from https://github.com/Zergleb/Spring-Boot-JSF-Example */
 @SpringBootApplication
 public class SpringJsfEvaluationApplication {
 

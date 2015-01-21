@@ -39,31 +39,30 @@
 					<ui:repeat var="v" value="#{jsfController.varianten}"
 						varStatus="status">
 						<td class="col-xs-3">
-							<form class="form-horizontal">
 								<div class="form-group">
 									<div class="col-sm-7">
 										<h:selectOneMenu value="#{v.schuhinfo}"
-											id="schuhInfoList" styleClass="form-control">
+											id="schuhInfoList" styleClass="form-control"
+											>
 											<f:selectItems value="#{jsfController.schuhinfos}"
 												var="schuhinfo" itemLabel="#{schuhinfo.label}"
 												itemValue="#{schuhinfo}" />
-											<f:ajax listener="#{jsfController.selectSchuh(v)}" execute="@all" render="@all"/>
+										  	<f:ajax listener="#{jsfController.selectSchuh(v)}" render="schuhanzahl schuhpreis"/>
 										</h:selectOneMenu>
 									</div>
 									<div class="col-sm-5">
-										<h:inputText value="#{v.schuhanzahl}" styleClass="form-control" type="text"
+										<h:inputText id="schuhanzahl" value="#{v.schuhanzahl}" styleClass="form-control" type="text"
 											rendered="#{v.schuhinfo == 'Bekannt'}">
-											<f:ajax listener="#{jsfController.selectSchuh(v)}" execute="@all" render="@all"/>
+											<f:ajax listener="#{jsfController.selectSchuh(v)}" render="schuhpreis"/>
 										</h:inputText>
 									</div>
 								</div>
 								<div class="row">
 									<p class="text-right col-xs-12">
 										<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
-										<h:outputLabel value="#{v.schuhpreis}"></h:outputLabel> €
+										<h:outputLabel id="schuhpreis" value="#{v.schuhpreis}"></h:outputLabel> €
 									</p>
 								</div>
-							</form>
 						</td>
 					</ui:repeat>
 				</tr>
@@ -162,7 +161,6 @@
 				</tr>
 			</tbody>
 		</table>
-
 		<div class="row">
 			<div class="col-xs-4 text-right"></div>
 			<div class="col-xs-4 btn-group">
@@ -184,7 +182,6 @@
 			</div>
 			<div class="col-xs-4"></div>
 		</div>
-
 
 	</h:form>
 </h:body>

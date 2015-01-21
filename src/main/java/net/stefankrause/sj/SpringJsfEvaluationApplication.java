@@ -49,9 +49,18 @@ public class SpringJsfEvaluationApplication {
 		ServletRegistrationBean registration = new ServletRegistrationBean(
 				facesServlet(), "*.xhtml");
 		registration.setName("FacesServlet");
+		registration.setLoadOnStartup(1);
 		return registration;
 	}
 
+//	MyFaces	
+//	@Bean
+//	public ServletContextListener jsfConfigureListener() {
+//		System.out.println("jsfConfigureListener");
+//		return new StartupServletContextListener();
+//	}   
+	
+//	Mojarra	
 	@Bean
 	public ServletListenerRegistrationBean<ConfigureListener> jsfConfigureListener() {
 		return new ServletListenerRegistrationBean<ConfigureListener>(

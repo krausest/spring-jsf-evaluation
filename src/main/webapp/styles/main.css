@@ -5,3 +5,10 @@
 select[size] {
  	height: 34px;
 }
+
+.validation-ok {
+	
+}
+.validation-failed {
+	border-color:#f00;
+}

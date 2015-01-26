@@ -21,23 +21,24 @@ public class SpringJsfEvaluationApplication {
         SpringApplication.run(SpringJsfEvaluationApplication.class, args);
     }
     
-	@Bean
-	public static ViewScope viewScope() {
-		return new ViewScope();
-	}
-
-	/**
-	 * Allows the use of @Scope("view") on Spring @Component, @Service and @Controller
-	 * beans
-	 */
-	@Bean
-	public static CustomScopeConfigurer scopeConfigurer() {
-		CustomScopeConfigurer configurer = new CustomScopeConfigurer();
-		HashMap<String, Object> hashMap = new HashMap<String, Object>();
-		hashMap.put("view", viewScope());
-		configurer.setScopes(hashMap);
-		return configurer;
-	}
+//	@Bean
+//	public static ViewScope viewScope() {
+//		return new ViewScope();
+//	}
+//
+//	/**
+//	 * Allows the use of @Scope("view") on Spring @Component, @Service and @Controller
+//	 * beans
+//	 */
+//	@Bean
+//	public static CustomScopeConfigurer scopeConfigurer() {
+//		CustomScopeConfigurer configurer = new CustomScopeConfigurer();
+//		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+//		hashMap.put("view", viewScope());
+//		System.out.println("view scope registered");
+//		configurer.setScopes(hashMap);
+//		return configurer;
+//	}
 
 	@Bean
 	public FacesServlet facesServlet() {
@@ -66,4 +67,5 @@ public class SpringJsfEvaluationApplication {
 		return new ServletListenerRegistrationBean<ConfigureListener>(
 				new ConfigureListener());
 	}    
+
 }

@@ -1,0 +1,3 @@
+* Validierung und render, execute, resetValues ..... grrrrrr
+* Styles korrekt
+* Noch ein Form auf dem Sceen => erster Klick geht nicht

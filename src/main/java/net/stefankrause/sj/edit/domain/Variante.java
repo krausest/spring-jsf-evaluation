@@ -7,6 +7,7 @@ public class Variante {
 	private int schuhanzahl;
 	private int schuhpreis;
 	private List<HaustierInfo> haustiere;
+	private boolean showInputElements;
 	
 	public List<HaustierInfo> getHaustiere() {
 		return haustiere;
@@ -31,5 +32,11 @@ public class Variante {
 	}
 	public void setSchuhinfo(Schuhinfo schuhinfo) {
 		this.schuhinfo = schuhinfo;
+	}
+	public boolean isShowInputElements() {
+		return showInputElements;
+	}
+	public void setShowInputElements(boolean showInputElements) {
+		this.showInputElements = showInputElements;
 	}
 }

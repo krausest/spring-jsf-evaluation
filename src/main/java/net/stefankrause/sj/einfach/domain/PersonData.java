@@ -2,11 +2,16 @@ package net.stefankrause.sj.einfach.domain;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
+
 public class PersonData {
 	private String name;
 	private String vorname;
 	private String geburtsdatum;
 	private boolean erweitert;
+	
+	@Null(message="Bitte geben Sie eine Straße an")
 	private String straße;
 	private String hausnummer;
 	private String plz;

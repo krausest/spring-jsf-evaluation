@@ -12,6 +12,7 @@ public class PersonData {
 	private String plz;
 	private String ort;
 	private List<String> errors;
+	private String hobby;
 	
 	public String getName() {
 		return name;
@@ -72,7 +73,13 @@ public class PersonData {
 		return "PersonData [name=" + name + ", vorname=" + vorname
 				+ ", geburtsdatum=" + geburtsdatum + ", erweitert=" + erweitert
 				+ ", straße=" + straße + ", hausnummer=" + hausnummer
-				+ ", plz=" + plz + ", ort=" + ort + ", errors=" + errors + "]";
+				+ ", plz=" + plz + ", ort=" + ort + ", errors=" + errors+ ", hobby=" + hobby + "]";
+	}
+	public String getHobby() {
+		return hobby;
+	}
+	public void setHobby(String hobby) {
+		this.hobby = hobby;
 	}
 	
 }

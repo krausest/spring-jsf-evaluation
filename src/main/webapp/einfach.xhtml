@@ -10,91 +10,90 @@
 	<meta name="viewport" content="width=device-width" />
 	<link rel="stylesheet" href="js_vendor/bootstrap/css/bootstrap.css" />
 	<link rel="stylesheet" href="styles/main.css" />
-	<f:metadata>
-		<f:viewAction action="#{einfachController.reset()}" onPostback="false" />
-	</f:metadata>
 </h:head>
 <h:body style="padding:20px">
 	<h1>Edit form</h1>
 	<h:form id="test">
 		<div class="bg-danger">
-			<h:messages />
+			<h:messages id="messages"/>
 			<!--  <ul>
 				<li>errors</li>
 			</ul> -->
 		</div>
 		<div class="form-group">
 			<label for="n">Name</label> <input type="text" id="n"
-				class="form-control" jsf:id="inpName"
+				class="#{component.valid?'form-control validation-ok':'form-control validation-failed'}" jsf:id="inpName"
 				jsf:value="#{einfachController.personData.name}" placeholder="Name"
 				jsf:validatorMessage="Bitte geben Sie einen Namen an">
 			<f:validateLength minimum="1" maximum="10000" />
-			<f:ajax/>
+			<f:ajax ender="@this messages name-errors"/>
 			</input>
 		</div>
-		<div class="form-group bg-danger">
+		<div class="form-group bg-danger" jsf:id="name-errors">
 			<h:message for="inpName" />
 		</div>
 		<div class="form-group">
 			<label for="vn">Vorname</label> <input type="text" id="vn"
-				class="form-control" jsf:id="inpVorname"
+				class="#{component.valid?'form-control validation-ok':'form-control validation-failed'}" jsf:id="inpVorname"
 				jsf:value="#{einfachController.personData.vorname}"
 				placeholder="Vorname"
 				jsf:validatorMessage="Bitte geben Sie einen Vornamen an">
 			<f:validateLength minimum="1" maximum="10000" />
-			<f:ajax/>
+			<f:ajax render="@this messages vorname-errors"/>
 			</input>
 		</div>
-		<div class="form-group bg-danger">
+		<div class="form-group bg-danger" jsf:id="vorname-errors">
 			<h:message for="inpVorname" styleClass="bg-danger" />
 		</div>
 		<div class="form-group">
-			<label for="gb">Geburtsdatum</label> <input type="text" id="gb"
-				class="form-control" jsf:id="inpGeburtsdatum"
+			<label for="gb">Geburtsdatum</label> <input type="text" 
+				class="#{component.valid?'form-control validation-ok':'form-control validation-failed'}" jsf:id="inpGeburtsdatum"
 				jsf:value="#{einfachController.personData.geburtsdatum}"
 				placeholder="Geburtsdatum"
+				jsf:binding="#{einfachController.inpGeburtsdatum}"
 				jsf:validatorMessage="Bitte geben Sie einen Geburtstag als DD.MM.YYYY an">
 			<f:validateRegex pattern="\d?\d\.\d?\d\.\d\d\d\d" />
-			<f:ajax render="@form"/>
+				<f:ajax render="@this messages geburtsdatum-errors"/>
 			</input>
 		</div>
-		<div class="form-group bg-danger">
+		<div class="form-group bg-danger" jsf:id="geburtsdatum-errors">
 			<h:message for="inpGeburtsdatum" styleClass="bg-danger" />
 		</div>
 		<div class="checkbox">
-			<label> <input type="checkbox" id="erweitertCheckbox"
+			<label> <input type="checkbox" id="erweitertCheckbox" 
 				jsf:value="#{einfachController.personData.erweitert}"
 				jsf:valueChangeListener="#{einfachController.toggleErweitert}">
-			<f:ajax immediate="true" execute="@all" render="@all" /> <!--  wie rendere ich nur die erweitertGroup ??? -->
+			<f:ajax render="erweitertGroup" /> <!--  wie rendere ich nur die erweitertGroup ??? -->
 				</input>Erweitert
 			</label>
 		</div>
-		<div jsf:id="erweitertGroup"
-			jsf:rendered="#{einfachController.personData.erweitert}">
-			<div class="form-group">
-				<label for="str">Straße</label> <input type="text" id="str"
-					class="form-control"
-					jsf:validator="#{einfachController.validateNotEmptyIfErweitert}"
-					jsf:value="#{einfachController.personData.straße}"
-					jsf:validatorMessage="Bitte geben Sie eine Straße an"
-					placeholder="Straße" />
-			</div>
-			<div class="form-group clearfix">
-				<div class="col-xs-4" style="padding-left: 0px">
-					<label for="plz">Plz</label> <input type="text" id="str"
-						class="form-control"
-						jsf:validator="#{einfachController.validateNotEmptyNumberIfErweitert}"
-						jsf:value="#{einfachController.personData.plz}"
-						jsf:validatorMessage="Bitte geben Sie eine Plz an"
-						placeholder="Plz" />
-				</div>
-				<div class="col-xs-8" style="padding-right: 0px">
-					<label for="ort">Ort</label> <input type="text" id="ort"
-						class="form-control"
+		<div jsf:id="erweitertGroup">
+			<div jsf:id="innerDiv" rendered="#{einfachController.personData.erweitert}">
+				<div class="form-group">
+					<label for="str">Straße</label> <input type="text" id="str"
+						class="#{component.valid?'form-control validation-ok':'form-control validation-failed'}"
 						jsf:validator="#{einfachController.validateNotEmptyIfErweitert}"
-						jsf:value="#{einfachController.personData.ort}"
-						jsf:validatorMessage="Bitte geben Sie einen Ort an"
-						placeholder="Ort" />
+						jsf:value="#{einfachController.personData.straße}"
+						jsf:validatorMessage="Bitte geben Sie eine Straße an"
+						placeholder="Straße" />
+				</div>
+				<div class="form-group clearfix">
+					<div class="col-xs-4" style="padding-left: 0px">
+						<label for="plz">Plz</label> <input type="text" id="str"
+							class="#{component.valid?'form-control validation-ok':'form-control validation-failed'}"
+							jsf:validator="#{einfachController.validateNotEmptyNumberIfErweitert}"
+							jsf:value="#{einfachController.personData.plz}"
+							jsf:validatorMessage="Bitte geben Sie eine Plz an"
+							placeholder="Plz" />
+					</div>
+					<div class="col-xs-8" style="padding-right: 0px">
+						<label for="ort">Ort</label> <input type="text" id="ort"
+							class="#{component.valid?'form-control validation-ok':'form-control validation-failed'}"
+							jsf:validator="#{einfachController.validateNotEmptyIfErweitert}"
+							jsf:value="#{einfachController.personData.ort}"
+							jsf:validatorMessage="Bitte geben Sie einen Ort an"
+							placeholder="Ort" />
+					</div>
 				</div>
 			</div>
 		</div>

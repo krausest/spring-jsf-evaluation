@@ -1,3 +1,22 @@
-* Validierung und render, execute, resetValues ..... grrrrrr
-* Styles korrekt
-* Noch ein Form auf dem Sceen => erster Klick geht nicht
+* On Blur: Revalidierung der Felder
+	Entweder werden alle Felder validiert, dann stimmt die Liste (execute="@form"), dann 
+		aber auch Felder die noch nicht bearbeitet wurden
+	Oder man revalidiert nur einzelne Felder, dann aber enthält die Liste nur den aktuellen Validierungsfehler
+	(Es gibt kein pristine)
+	Wenn on-Blur durch Klick auf Speichern verursacht wird, dann erfolgt die Validierung. Der Klick auf Speichern wird
+	ignoriert.(Nicht mehr reproduzierbar)
+* zweite Seite wird automatisch per Ajax gerendert und inkludiert, aber form-ids müssen eindeutig sein.
+	Back-Button ist entweder immediate oder halt nicht. In ersterem Fall wird dann nie der eingegebene Wert übernommen.
+	Seite ohne Ajax laden ginge wohl nicht, wenn man die Validierung per Ajax machen will...
+	ISSUE: Back-Button geht nicht beim ersten Klick
+* Sichtbarschalten durch Checkbox:
+	Siehe http://stackoverflow.com/questions/10707655/panelgroup-is-not-getting-rendered-after-clicking-the-command-button-action
+	Geht nur, wenn zwei Divs verschachtelt sind und das innere rendered=... hat 
+* Scopes
+	mit und ohne Spring-EL-Resolver: @javax.faces.bean.ManagedBean => javax.el.PropertyNotFoundException einfachController
+	ohne Spring-EL-Resolver: @RestController => javax.el.PropertyNotFoundException einfachController
+	 mit Spring-EL-Resolver: @RestController => geht
+	  ConversationScoped
+	Bei mir tut nur session. Request führt zu null Werten.  
+* Spring Injection: Geht für @RestController @Scope("session")
+	Ja

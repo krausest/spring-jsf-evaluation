@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Scope("session")
+@Scope("request")
 public class JsfController {
 	
 	private Schuhinfo selectedschuhinfo = Schuhinfo.Keine_Fuesse;

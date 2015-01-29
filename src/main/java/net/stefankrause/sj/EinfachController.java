@@ -9,17 +9,26 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.validator.ValidatorException;
+import javax.inject.Named;
 
 import net.stefankrause.sj.einfach.domain.PersonData;
 
 import org.springframework.context.annotation.Scope;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+//@RestController
+//@Scope("session")
+@Named  
 @Scope("session")
 public class EinfachController {
 	@Resource
 	private GeburtsdatumValidatorService geburtsdatumValidatorService;
+	
+	@Resource 
+	private TestBean testBean;
+	
+	public TestBean getTestBean(){
+	    return  testBean;
+	}
 	
 	private PersonData personData;
 	

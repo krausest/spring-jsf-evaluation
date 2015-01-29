@@ -3,7 +3,8 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough" >
 <h:head>
 	<title>Spring JSF Evaluation</title>
 	<meta name="description" content="" />
@@ -24,13 +25,13 @@
 			</ul> -->
 		</div>
 		<div class="form-group">
-			<label for="n">Name</label> <input type="text" id="n"
-				class="form-control" jsf:id="inpName"
-				jsf:value="#{einfachController.personData.name}" placeholder="Name"
-				jsf:validatorMessage="Bitte geben Sie einen Namen an">
-			<f:validateLength minimum="1" maximum="10000" />
-			<f:ajax/>
-			</input>
+       		<label for="n">Name</label> <input type="text" id="n"
+                class="form-control" jsf:id="inpName"
+                jsf:value="#{einfachController.personData.name}" placeholder="Name"
+                jsf:validatorMessage="Bitte geben Sie einen Namen an" >
+             <f:validateLength minimum="1" maximum="10000" />
+             <f:ajax/>
+            </input>
 		</div>
 		<div class="form-group bg-danger">
 			<h:message for="inpName" />
@@ -53,7 +54,8 @@
 				class="form-control" jsf:id="inpGeburtsdatum"
 				jsf:value="#{einfachController.personData.geburtsdatum}"
 				placeholder="Geburtsdatum"
-				jsf:validatorMessage="Bitte geben Sie einen Geburtstag als DD.MM.YYYY an">
+				>
+			<!--  jsf:validatorMessage="Bitte geben Sie einen Geburtstag als DD.MM.YYYY an" -->
 			<f:validateRegex pattern="\d?\d\.\d?\d\.\d\d\d\d" />
 			<f:ajax render="@form"/>
 			</input>
@@ -61,24 +63,24 @@
 		<div class="form-group bg-danger">
 			<h:message for="inpGeburtsdatum" styleClass="bg-danger" />
 		</div>
+		<!--  http://stackoverflow.com/questions/15787376/fajax-render-someid-does-not-update-target-component-but-fajax-render -->
 		<div class="checkbox">
-			<label> <input type="checkbox" id="erweitertCheckbox"
-				jsf:value="#{einfachController.personData.erweitert}"
-				jsf:valueChangeListener="#{einfachController.toggleErweitert}">
-			<f:ajax immediate="true" execute="@all" render="@all" /> <!--  wie rendere ich nur die erweitertGroup ??? -->
-				</input>Erweitert
-			</label>
+            <label> <input type="checkbox" id="erweitertCheckbox"
+                jsf:value="#{einfachController.personData.erweitert}">
+			     <f:ajax render="erweitertGroup2 txterweitertGroup2" /> 
+			     <!--  wie rendere ich nur die erweitertGroup ??? -->
+            </input>
+            Erweitert</label>
+			<h:outputLabel value="#{einfachController.testBean.Test()}" />
 		</div>
-		<div jsf:id="erweitertGroup"
-			jsf:rendered="#{einfachController.personData.erweitert}">
-			<div class="form-group">
-				<label for="str">Straße</label> <input type="text" id="str"
-					class="form-control"
-					jsf:validator="#{einfachController.validateNotEmptyIfErweitert}"
-					jsf:value="#{einfachController.personData.straße}"
-					jsf:validatorMessage="Bitte geben Sie eine Straße an"
-					placeholder="Straße" />
-			</div>
+		<div jsf:id="erweitertGroup2"> 
+		<div jsf:id="hidenGroup" jsf:rendered="#{einfachController.personData.erweitert == true}">
+            <div class="form-group">
+                <label for="str">Straße</label> <input type="text" id="str"
+                    class="form-control"
+                    jsf:value="#{einfachController.personData.straße}"
+                    placeholder="Straße" />
+            </div>
 			<div class="form-group clearfix">
 				<div class="col-xs-4" style="padding-left: 0px">
 					<label for="plz">Plz</label> <input type="text" id="str"
@@ -97,6 +99,7 @@
 						placeholder="Ort" />
 				</div>
 			</div>
+        </div>
 		</div>
 		<div class="form-group">
 			<button jsf:id="submit" type="submit" class="btn btn-default"

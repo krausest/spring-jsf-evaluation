@@ -5,15 +5,16 @@
     xmlns:f="http://xmlns.jcp.org/jsf/core">
   	<ui:define name="content">
 		<h1>Edit form2</h1>		
-		<h:messages id="messages"/>
+<!-- 
 		<h:panelGroup>
 			<h:message id="msgInpVorname" for="inpVorname"/>
 		</h:panelGroup>
+		 -->
 		<h:panelGroup>
 			<label for="vn">Vorname</label> <h:inputText id="inpVorname"
 				value="#{einfachController.personData.vorname}">
 			<f:validateLength minimum="3" maximum="3" />
-			<f:ajax execute="@this msgInpVorname" render="@this msgInpVorname messages"/>
+			<f:ajax execute="@this :messages" render="@this :messages"/>
 			</h:inputText>
 		</h:panelGroup>
 		<h:panelGroup>

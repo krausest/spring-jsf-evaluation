@@ -2,4 +2,7 @@
           <application>
             <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
         </application>
+        <lifecycle>
+	    <phase-listener>net.stefankrause.sj.LifeCycleListener</phase-listener>
+	</lifecycle>
 </faces-config>

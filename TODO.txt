@@ -20,3 +20,5 @@
 	Bei mir tut nur session. Request führt zu null Werten.  
 * Spring Injection: Geht für @RestController @Scope("session")
 	Ja
+* Client Validation geht nicht im Standard
+* Buttons mit f:ajx gehen immer mal wieder nicht

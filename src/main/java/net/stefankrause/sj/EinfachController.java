@@ -20,7 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
 @Controller
-@Scope("view")
+@Scope("session")
 public class EinfachController {
 	private GeburtsdatumValidatorService geburtsdatumValidatorService = new GeburtsdatumValidatorService();
 //	@Resource
@@ -51,6 +51,7 @@ public class EinfachController {
 	}
 	
 	public String save() {
+		System.out.println("save");
 	  if (!geburtsdatumValidatorService.isDatumValid(personData.getGeburtsdatum())) {
 		  System.out.println("save - Geburtsdatum invalid "+personData);
 		  FacesContext.getCurrentInstance().addMessage(inpGeburtsdatum.getClientId(), new FacesMessage("Geburtsdatum muss in der Vergangenheit liegen"));

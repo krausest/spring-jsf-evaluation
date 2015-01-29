@@ -39,7 +39,7 @@
 				placeholder="Vorname"
 				jsf:validatorMessage="Bitte geben Sie einen Vornamen an">
 			<f:validateLength minimum="1" maximum="10000" />
-			<f:ajax render="@this messages vorname-errors"/>
+			<f:ajax execute="@form" render="@this messages vorname-errors"/>
 			</input>
 		</div>
 		<div class="form-group bg-danger" jsf:id="vorname-errors">

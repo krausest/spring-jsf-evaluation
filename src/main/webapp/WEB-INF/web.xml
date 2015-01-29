@@ -4,10 +4,11 @@
 		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
         http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 		id="WebApp_ID" version="3.0">
-<!-- Beginn MyFaces		
-	<listener>
+<!--	<listener>
 	  <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
 	</listener>
+	-->
+<!-- Beginn MyFaces		
 	 End MyFaces -->
 
 	<context-param>
@@ -16,7 +17,7 @@
 	</context-param>
 	 <context-param>
 	    <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
-	    <param-value>server</param-value>
+	    <param-value>client</param-value>
 	</context-param>
 
 <listener>

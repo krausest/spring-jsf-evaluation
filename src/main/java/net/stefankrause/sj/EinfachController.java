@@ -20,7 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
 @Controller
-@Scope("session")
+@Scope("view")
 public class EinfachController {
 	private GeburtsdatumValidatorService geburtsdatumValidatorService = new GeburtsdatumValidatorService();
 //	@Resource
@@ -31,7 +31,12 @@ public class EinfachController {
 	private UIInput inpGeburtsdatum;
 	
 	public EinfachController() {
+		System.out.println("EinfachController");
 		init();
+		if (personData==null && !FacesContext.getCurrentInstance().isPostback()) {
+			personData = (PersonData)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("personData");
+			System.out.println("Hole personData aus Session "+personData);
+		}
 	}
 
 	private void init() {
@@ -51,6 +56,7 @@ public class EinfachController {
 	}
 	
 	public String save() {
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("personData", personData);
 		System.out.println("save");
 	  if (!geburtsdatumValidatorService.isDatumValid(personData.getGeburtsdatum())) {
 		  System.out.println("save - Geburtsdatum invalid "+personData);

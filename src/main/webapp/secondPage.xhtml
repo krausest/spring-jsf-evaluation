@@ -9,7 +9,7 @@
 	<meta name="description" content="" />
 	<meta name="viewport" content="width=device-width" />
 	<link rel="stylesheet" href="js_vendor/bootstrap/css/bootstrap.css" />
-	<link rel="stylesheet" href="styles/main.css" />
+	<link rel="stylesheet" href="styles/main.css" />	
 </h:head>
 <h:body style="padding:20px">
 	<h1>Edit form</h1>
@@ -26,7 +26,6 @@
 				jsf:value="#{einfachController.personData.hobby}" placeholder="Hobby"
 				jsf:validatorMessage="Bitte geben Sie ein Hobby an">
 			<f:validateLength minimum="1" maximum="10000" />
-			<f:ajax ender="@this messages hobby-errors"/>
 			</input>
 		</div>
 		<div class="form-group bg-danger" jsf:id="hobby-errors">

@@ -3,7 +3,7 @@
 		aber auch Felder die noch nicht bearbeitet wurden
 	Oder man revalidiert nur einzelne Felder, dann aber enthält die Liste nur den aktuellen Validierungsfehler
 	(Es gibt kein pristine)
-	Wenn on-Blur durch Klick auf Speichern verursacht wird, dann erfolgt die Validierung. Der Klick auf Speichern wird
+	Wenn on-Blur durch Klick auf Speichern verursacht wird (Ungültiges Geburtsdatum => Blur, richtiges Geburtsdatum + klein Blur, dann KLick auf Speichern), dann erfolgt die Validierung. Der Klick auf Speichern wird
 	ignoriert.(Nicht mehr reproduzierbar)
 * zweite Seite wird automatisch per Ajax gerendert und inkludiert, aber form-ids müssen eindeutig sein.
 	Back-Button ist entweder immediate oder halt nicht. In ersterem Fall wird dann nie der eingegebene Wert übernommen.

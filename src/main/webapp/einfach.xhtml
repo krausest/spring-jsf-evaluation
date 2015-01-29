@@ -12,27 +12,22 @@
 	<link rel="stylesheet" href="styles/main.css" />
 </h:head>
 <h:body style="padding:20px">
-	<h1>Edit form</h1>
+	<h1>Edit form2</h1>
 	<h:form id="test">
 		<div class="bg-danger">
 			<h:messages id="messages"/>
 		</div>
 		<div class="form-group">
-			<label for="vn">Vorname</label> <input type="text" id="vn"
-				class="#{component.valid?'form-control validation-ok':'form-control validation-failed'}" jsf:id="inpVorname"
-				jsf:value="#{einfachController.personData.vorname}"
-				placeholder="Vorname"
-				jsf:validatorMessage="Bitte geben Sie einen Vornamen mit 3 Buchstaben an">
+			<label for="vn">Vorname</label> <h:inputText id="inpVorname"
+				value="#{einfachController.personData.vorname}">
 			<f:validateLength minimum="3" maximum="3" />
-			<f:ajax render="@this messages"/>
-			</input>
+			<f:ajax event="change" execute="@all" render="@all"/>
+			</h:inputText>
 		</div>
 		<div class="form-group">
-			<button jsf:id="submit" type="submit" class="btn btn-default"
-				jsf:action="#{einfachController.save()}">
-				Speichern
-				<f:ajax execute="@all" render="@all" />
-			</button>
+			<h:commandButton id="save" styleClass="btn btn-default" onclick="window.alert('Click')"
+				action="#{einfachController.save()}" value="Speichern">
+			</h:commandButton>
 		</div>
 	</h:form>
 </h:body>

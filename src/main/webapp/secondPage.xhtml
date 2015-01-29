@@ -16,34 +16,22 @@
 	<h:form id="secondPage">
 		<div class="bg-danger">
 			<h:messages id="messages"/>
-			<!--  <ul>
-				<li>errors</li>
-			</ul> -->
 		</div>
 		<div class="form-group">
-			<label for="n">Hobby</label> <input type="text" id="n"
-				class="#{component.valid?'form-control validation-ok':'form-control validation-failed'}" jsf:id="inpHobby"
-				jsf:value="#{einfachController.personData.hobby}" placeholder="Hobby"
-				jsf:validatorMessage="Bitte geben Sie ein Hobby an">
-			<f:validateLength minimum="1" maximum="10000" />
-			</input>
+			<label for="n">Hobby</label> <h:inputText id="inpHobby"
+				value="#{einfachController.personData.hobby}"
+				>
+			</h:inputText>
 		</div>
-		<div class="form-group bg-danger" jsf:id="hobby-errors">
-			<h:message for="inpHobby" />
-		</div>
-
 		<div class="form-group">
-			<button jsf:id="prev" type="submit" class="btn btn-default"
-				 jsf:action="#{einfachController.backPage1()}"> <!--  jsf:action einfach.xhtml geht auch nicht -->
-				Zurück
-				<f:ajax/>
-			</button>
-		
-			<button jsf:id="submit" type="submit" class="btn btn-default"
-				jsf:action="#{einfachController.savePage2()}" onclick="alert('Clicked')">
-				Speichern
+			<h:commandButton id="prev" styleClass="btn btn-default" value="Zurück"
+				 action="#{einfachController.backPage1()}"> <!--  jsf:action einfach.xhtml geht auch nicht -->				
 				<f:ajax execute="@all" render="@all" />
-			</button>
+			</h:commandButton>
+		
+			<h:commandButton id="next" styleClass="btn btn-default" value="Speichern"
+				action="#{einfachController.savePage2()}" onclick="alert('Clicked')">				
+			</h:commandButton>
 		</div>
 	</h:form>
 </h:body>

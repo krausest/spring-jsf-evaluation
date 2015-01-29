@@ -25,14 +25,13 @@
 			</ul> -->
 		</div>
 		<div class="form-group">
-			<label for="n">Name</label> 
-			<input type="text" id="n"
-				class="form-control" jsf:id="inpName"
-				jsf:value="#{einfachController.personData.name}" placeholder="Name"
-				jsf:validatorMessage="Bitte geben Sie einen Namen an" >
-			 <f:validateLength minimum="1" maximum="10000" />
-			 <f:ajax/>
-			</input>
+       		<label for="n">Name</label> <input type="text" id="n"
+                class="form-control" jsf:id="inpName"
+                jsf:value="#{einfachController.personData.name}" placeholder="Name"
+                jsf:validatorMessage="Bitte geben Sie einen Namen an" >
+             <f:validateLength minimum="1" maximum="10000" />
+             <f:ajax/>
+            </input>
 		</div>
 		<div class="form-group bg-danger">
 			<h:message for="inpName" />
@@ -65,30 +64,22 @@
 		</div>
 		<!--  http://stackoverflow.com/questions/15787376/fajax-render-someid-does-not-update-target-component-but-fajax-render -->
 		<div class="checkbox">
-			<h:selectBooleanCheckbox id="erweitertCheckbox"
-				value="#{einfachController.personData.erweitert}"
-				>
+            <label> <input type="checkbox" id="erweitertCheckbox"
+                jsf:value="#{einfachController.personData.erweitert}">
 			     <f:ajax render="erweitertGroup2 txterweitertGroup2" /> 
 			     <!--  wie rendere ich nur die erweitertGroup ??? -->
-            </h:selectBooleanCheckbox>
-            Erweitert
+            </input>
+            Erweitert</label>
 			<h:outputLabel value="#{einfachController.testBean.Test()}" />
 		</div>
-		<h:panelGroup id="erweitertGroup2"> 
-		<h:panelGroup id="hidenGroup" rendered="#{einfachController.personData.erweitert == true}">
-			<div class="form-group">
-				<h:outputLabel for="str">Straße</h:outputLabel>
-				<!-- JSR 303 Validation -> Vorsicht AEnderung in SpringJSFEvaluationApplication.java --> 
-				<h:inputText type="text" id="str"
-					class="form-control"
-					value="#{einfachController.personData.straße}"
-					a:placeholder="Straße" >
-					<!-- brauchen wir nicht, da sobald wir auf die Checkbox klicken, wird das teil aus dem HTML
-					   rausgenommen und nicht mehr validiert!  
-					<f:validateBean disabled="#{einfachController.personData.erweitert == false}" />
-					-->
-				</h:inputText>
-			</div>
+		<div jsf:id="erweitertGroup2"> 
+		<div jsf:id="hidenGroup" jsf:rendered="#{einfachController.personData.erweitert == true}">
+            <div class="form-group">
+                <label for="str">Straße</label> <input type="text" id="str"
+                    class="form-control"
+                    jsf:value="#{einfachController.personData.straße}"
+                    placeholder="Straße" />
+            </div>
 			<div class="form-group clearfix">
 				<div class="col-xs-4" style="padding-left: 0px">
 					<label for="plz">Plz</label> <input type="text" id="str"
@@ -107,8 +98,8 @@
 						placeholder="Ort" />
 				</div>
 			</div>
-        </h:panelGroup>
-		</h:panelGroup>
+        </div>
+		</div>
 		<div class="form-group">
 			<button jsf:id="submit" type="submit" class="btn btn-default"
 				jsf:action="#{einfachController.save()}">

@@ -22,30 +22,13 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller
 @Scope("view")
 public class EinfachController {
-	private GeburtsdatumValidatorService geburtsdatumValidatorService = new GeburtsdatumValidatorService();
-//	@Resource
-//	private GeburtsdatumValidatorService geburtsdatumValidatorService;
 	
 	private PersonData personData;
 	
-	private UIInput inpGeburtsdatum;
-	
 	public EinfachController() {
 		System.out.println("EinfachController");
-		init();
-		if (personData==null && !FacesContext.getCurrentInstance().isPostback()) {
-			personData = (PersonData)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("personData");
-			System.out.println("Hole personData aus Session "+personData);
-		}
-	}
-
-	private void init() {
 		personData = new PersonData();
 	}
-	
-    public void reset() {
-    	init();
-    }
 
 	public PersonData getPersonData() {
 		return personData;
@@ -56,17 +39,8 @@ public class EinfachController {
 	}
 	
 	public String save() {
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("personData", personData);
-		System.out.println("save");
-	  if (!geburtsdatumValidatorService.isDatumValid(personData.getGeburtsdatum())) {
-		  System.out.println("save - Geburtsdatum invalid "+personData);
-		  FacesContext.getCurrentInstance().addMessage(inpGeburtsdatum.getClientId(), new FacesMessage("Geburtsdatum muss in der Vergangenheit liegen"));
-		  inpGeburtsdatum.setValid(false);
-	      return null;
-	  } else {
-		  System.out.println("save - page is valid "+personData);
+		System.out.println("save "+personData);
 		return "secondPage.xhtml";
-	  }
 	}
 	
 	public String backPage1() {
@@ -79,55 +53,4 @@ public class EinfachController {
 		return null;
 	}
 	
-	public void toggleErweitert(ValueChangeEvent ev) {
-		personData.setErweitert((Boolean)ev.getNewValue());
-		System.out.println("toggle erweitert "+personData.isErweitert());
-	}
-	
-	public void validateNotEmptyIfErweitert(FacesContext ctx, UIComponent comp,
-		    Object value) throws ValidatorException {
-		  if (value instanceof String) {
-			  String str = (String)value;
-			  if ((str==null || str.trim().length()==0) && personData.isErweitert()) {
-			      throw new ValidatorException(
-			          new FacesMessage("messageText", null));
-			  }
-		  } else {
-		      throw new IllegalStateException("Nur für Strings zulässig");
-		  }
-		}
-
-	public void validateNotEmptyNumberIfErweitert(FacesContext ctx, UIComponent comp,
-			Object value) throws ValidatorException {
-		if (value instanceof String) {
-			String str = (String)value;
-			boolean failed = false;
-			if (str==null || str.trim().length()==0) {
-				failed = true;
-			} else {
-				try {
-					NumberFormat nf = NumberFormat.getInstance(Locale.GERMANY);
-					nf.setMinimumFractionDigits(0);
-					nf.setMaximumFractionDigits(0);
-					nf.parse(str).intValue();
-				} catch (Exception e) {
-					failed = true;
-				}
-			}
-			if (failed && personData.isErweitert()) {
-				throw new ValidatorException(
-						new FacesMessage("messageText", null));
-			}
-		} else {
-			throw new IllegalStateException("Nur für Strings zulässig");
-		}
-	}
-
-	public UIInput getInpGeburtsdatum() {
-		return inpGeburtsdatum;
-	}
-
-	public void setInpGeburtsdatum(UIInput inpGeburtsdatum) {
-		this.inpGeburtsdatum = inpGeburtsdatum;
-	}
 }

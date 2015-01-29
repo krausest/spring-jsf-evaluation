@@ -34,13 +34,13 @@
 
 		<div class="form-group">
 			<button jsf:id="prev" type="submit" class="btn btn-default"
-				 jsf:action="#{einfachController.backPage1()}">
+				 jsf:action="#{einfachController.backPage1()}"> <!--  jsf:action einfach.xhtml geht auch nicht -->
 				Zurück
-				<f:ajax execute="@all" render="@all" />
+				<f:ajax/>
 			</button>
 		
 			<button jsf:id="submit" type="submit" class="btn btn-default"
-				jsf:action="#{einfachController.savePage2()}">
+				jsf:action="#{einfachController.savePage2()}" onclick="alert('Clicked')">
 				Speichern
 				<f:ajax execute="@all" render="@all" />
 			</button>

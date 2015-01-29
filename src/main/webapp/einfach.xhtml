@@ -1,34 +1,26 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head>
-	<title>Spring JSF Evaluation</title>
-	<meta name="description" content="" />
-	<meta name="viewport" content="width=device-width" />
-	<link rel="stylesheet" href="js_vendor/bootstrap/css/bootstrap.css" />
-	<link rel="stylesheet" href="styles/main.css" />
-</h:head>
-<h:body style="padding:20px">
-	<h1>Edit form2</h1>
-	<h:form id="test">
-		<div class="bg-danger">
-			<h:messages id="messages"/>
-		</div>
-		<div class="form-group">
+<ui:composition template="main.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+  	<ui:define name="content">
+		<h1>Edit form2</h1>		
+		<h:messages id="messages"/>
+		<h:panelGroup>
+			<h:message id="msgInpVorname" for="inpVorname"/>
+		</h:panelGroup>
+		<h:panelGroup>
 			<label for="vn">Vorname</label> <h:inputText id="inpVorname"
 				value="#{einfachController.personData.vorname}">
 			<f:validateLength minimum="3" maximum="3" />
-			<f:ajax event="change" execute="@all" render="@all"/>
+			<f:ajax execute="@this msgInpVorname" render="@this msgInpVorname messages"/>
 			</h:inputText>
-		</div>
-		<div class="form-group">
+		</h:panelGroup>
+		<h:panelGroup>
 			<h:commandButton id="save" styleClass="btn btn-default" onclick="window.alert('Click')"
 				action="#{einfachController.save()}" value="Speichern">
+			<f:ajax execute="@form" render="@form"/>
 			</h:commandButton>
-		</div>
-	</h:form>
-</h:body>
-</html>
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>

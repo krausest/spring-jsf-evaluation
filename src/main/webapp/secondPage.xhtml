@@ -1,38 +1,29 @@
-<!DOCTYPE html>
-<h:html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head>
-	<title>Spring JSF Evaluation</title>
-	<meta name="description" content="" />
-	<meta name="viewport" content="width=device-width" />
-	<link rel="stylesheet" href="js_vendor/bootstrap/css/bootstrap.css" />
-	<link rel="stylesheet" href="styles/main.css" />	
-</h:head>
-<h:body style="padding:20px">
+<ui:composition template="main.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+  	<ui:define name="content">
 	<h1>Edit form</h1>
-	<h:form id="secondPage">
-		<div class="bg-danger">
-			<h:messages id="messages"/>
-		</div>
-		<div class="form-group">
-			<label for="n">Hobby</label> <h:inputText id="inpHobby"
-				value="#{einfachController.personData.hobby}"
-				>
-			</h:inputText>
-		</div>
-		<div class="form-group">
-			<h:commandButton id="prev" styleClass="btn btn-default" value="Zurück"
-				 action="#{einfachController.backPage1()}"> <!--  jsf:action einfach.xhtml geht auch nicht -->				
-				<f:ajax execute="@all" render="@all" />
-			</h:commandButton>
-		
-			<h:commandButton id="next" styleClass="btn btn-default" value="Speichern"
-				action="#{einfachController.savePage2()}" onclick="alert('Clicked')">				
-			</h:commandButton>
-		</div>
-	</h:form>
-</h:body>
-</h:html>
+	<div class="bg-danger">
+		<h:messages id="messages"/>
+	</div>
+	<div class="form-group">
+		<label for="n">Hobby</label> <h:inputText id="inpHobby"
+			value="#{einfachController.personData.hobby}"
+			>
+		</h:inputText>
+	</div>
+	<div class="form-group">
+		<h:commandButton id="prev" styleClass="btn btn-default" value="Zurück"
+			 action="#{einfachController.backPage1()}"> <!--  jsf:action einfach.xhtml geht auch nicht -->				
+			<f:ajax execute="@all" render="@all" />
+		</h:commandButton>
+	
+		<h:commandButton id="next" styleClass="btn btn-default" value="Speichern"
+			action="#{einfachController.savePage2()}" onclick="alert('Clicked')">	
+			<f:ajax execute="@form" render="@form"/>			
+		</h:commandButton>
+	</div>
+</ui:define>
+</ui:composition>

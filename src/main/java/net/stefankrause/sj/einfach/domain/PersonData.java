@@ -3,15 +3,21 @@ package net.stefankrause.sj.einfach.domain;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+import net.stefankrause.sj.ValidatorGeburtstag;
 
 public class PersonData {
 	private String name;
 	private String vorname;
+	@ValidatorGeburtstag(message = "Geburtstag falsch")
+	
 	private String geburtsdatum;
 	private boolean erweitert;
 	
-	@Null(message="Bitte geben Sie eine Straße an")
+	@NotNull(message="Bitte geben Sie eine Straße an(Null)")
+	@NotEmpty(message="Bitte geben Sie eine Straße an(Empty)")
 	private String straße;
 	private String hausnummer;
 	private String plz;

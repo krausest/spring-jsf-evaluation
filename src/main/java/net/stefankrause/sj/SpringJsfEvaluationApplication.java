@@ -29,7 +29,7 @@ public class SpringJsfEvaluationApplication {
 //	@Bean
 //	public static ViewScope viewScope() {
 //		return new ViewScope();
-//	}
+//	}j
 //
 //	/**
 //	 * Allows the use of @Scope("view") on Spring @Component, @Service and @Controller

@@ -54,7 +54,8 @@
 				class="form-control" jsf:id="inpGeburtsdatum"
 				jsf:value="#{einfachController.personData.geburtsdatum}"
 				placeholder="Geburtsdatum"
-				jsf:validatorMessage="Bitte geben Sie einen Geburtstag als DD.MM.YYYY an">
+				>
+			<!--  jsf:validatorMessage="Bitte geben Sie einen Geburtstag als DD.MM.YYYY an" -->
 			<f:validateRegex pattern="\d?\d\.\d?\d\.\d\d\d\d" />
 			<f:ajax render="@form"/>
 			</input>
